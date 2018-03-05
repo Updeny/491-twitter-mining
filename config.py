@@ -1,4 +1,4 @@
+auth_key = ""
+auth_secret = ""
 consumer_key = ""
 consumer_secret = ""
-access_key = ""
-access_secret = ""

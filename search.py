@@ -15,7 +15,7 @@ def removeUnicode(text):
 
 
 # Retrieve authentication items
-auth = twitter.oauth.OAuth(config.access_key, config.access_secret, config.api_key, config.api_secret)
+auth = twitter.oauth.OAuth(config.auth_key, config.auth_secret, config.consumer_key, config.consumer_secret)
 
 tw = twitter.Twitter(auth = auth)
 
