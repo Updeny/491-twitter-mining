@@ -8,7 +8,7 @@ tw = twitter.Twitter(auth = auth)
 
 # Search twitter for @CocaCola's most recent tweets
 q = 'from:CocaCola'
-count=10
+count=25
 tweets = tw.search.tweets(q=q, count=count, lang='en', result_type='recent')
 texts=[]
 
