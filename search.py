@@ -59,7 +59,7 @@ for status in tweets['statuses']:
     print '\t' + str(vs['compound'])
     print '--------------------------------------------------------------------------'
 
-print '\nLexical Analysis for @CocaCola\'s Most Popular Tweets:'
+print '\nLexical Analysis for @Pepsi\'s Most Popular Tweets:'
 print '--------------------------------------------------------------------------'
 
 # Lexical analysis
