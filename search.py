@@ -19,7 +19,7 @@ print '-------------------------------------------------------------------------
 for status in tweets['statuses']:
     texts.append(status['text'])
     print 'Tweet:'
-    print '\t' + status['text']
+    print '\t' + status['text'].encode('utf-8')
     vs = vaderSentiment(status['text'].encode('utf-8'))
     print 'Sentiment analysis:'
     print '\t' + str(vs['compound'])
@@ -31,7 +31,7 @@ print '-------------------------------------------------------------------------
 # Lexical analysis
 for text in texts:
     print 'Tweet:'
-    print '\t' + text
+    print '\t' + text.encode('utf-8')
     words = []
     for w in text.split():
         words.append(w)
@@ -53,7 +53,7 @@ print '-------------------------------------------------------------------------
 for status in tweets['statuses']:
     texts.append(status['text'])
     print 'Tweet:'
-    print '\t' + status['text']
+    print '\t' + status['text'].encode('utf-8')
     vs = vaderSentiment(status['text'].encode('utf-8'))
     print 'Sentiment analysis:'
     print '\t' + str(vs['compound'])
@@ -65,7 +65,7 @@ print '-------------------------------------------------------------------------
 # Lexical analysis
 for text in texts:
     print 'Tweet:'
-    print '\t' + text
+    print '\t' + text.encode('utf-8')
     words = []
     for w in text.split():
         words.append(w)
