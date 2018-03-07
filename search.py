@@ -6,13 +6,13 @@ from vaderSentiment.vaderSentiment import sentiment as vaderSentiment
 auth = twitter.oauth.OAuth(config.auth_key, config.auth_secret, config.consumer_key, config.consumer_secret)
 tw = twitter.Twitter(auth = auth)
 
-# Search twitter for @CocaCola's most popular tweets
+# Search twitter for @CocaCola's most recent tweets
 q = 'from:CocaCola'
 count=10
-tweets = tw.search.tweets(q=q, count=count, lang='en', result_type='popular')
+tweets = tw.search.tweets(q=q, count=count, lang='en', result_type='recent')
 texts=[]
 
-print 'Sentiment Analysis for @CocaCola\'s Most Popular Tweets:'
+print 'Sentiment Analysis for @CocaCola\'s Most Recent Tweets:'
 print '--------------------------------------------------------------------------'
 
 # Sentiment analysis
@@ -25,7 +25,7 @@ for status in tweets['statuses']:
     print '\t' + str(vs['compound'])
     print '--------------------------------------------------------------------------'
 
-print '\nLexical Analysis for @CocaCola\'s Most Popular Tweets:'
+print '\nLexical Analysis for @CocaCola\'s Most Recent Tweets:'
 print '--------------------------------------------------------------------------'
 
 # Lexical analysis
@@ -40,13 +40,13 @@ for text in texts:
     print '--------------------------------------------------------------------------'
 
 
-# Search twitter for @Pepsi's most popular tweets
+# Search twitter for @Pepsi's most recent tweets
 q = 'from:Pepsi'
-count=10
-tweets = tw.search.tweets(q=q, count=count, lang='en', result_type='popular')
+count=25
+tweets = tw.search.tweets(q=q, count=count, lang='en', result_type='recent')
 texts=[]
 
-print '\nSentiment Analysis for @Pepsi\'s Most Popular Tweets:'
+print '\nSentiment Analysis for @Pepsi\'s Most Recent Tweets:'
 print '--------------------------------------------------------------------------'
 
 # Sentiment analysis
@@ -59,7 +59,7 @@ for status in tweets['statuses']:
     print '\t' + str(vs['compound'])
     print '--------------------------------------------------------------------------'
 
-print '\nLexical Analysis for @Pepsi\'s Most Popular Tweets:'
+print '\nLexical Analysis for @Pepsi\'s Most Recent Tweets:'
 print '--------------------------------------------------------------------------'
 
 # Lexical analysis
