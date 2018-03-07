@@ -1,50 +1,74 @@
 import twitter
-import json
 import config
-from collections import Counter
-from prettytable import PrettyTable
-
-
-# Remove unicode from string
-def removeUnicode(text):
-    asciiText = ""
-    for char in text:
-        if(ord(char) < 128):
-	    asciiText = asciiText + char
-    return asciiText
-
+from vaderSentiment.vaderSentiment import sentiment as vaderSentiment
 
 # Retrieve authentication items
 auth = twitter.oauth.OAuth(config.auth_key, config.auth_secret, config.consumer_key, config.consumer_secret)
-
 tw = twitter.Twitter(auth = auth)
 
-#SEARCH
-q='@CocaCola'
-count = 10
-tweets = tw.search.tweets(q=q, count=count, lang='en')
-texts = []
+# Search twitter for @CocaCola's most popular tweets
+q = 'from:CocaCola'
+count=10
+tweets = tw.search.tweets(q=q, count=count, lang='en', result_type='popular')
+texts=[]
+
+print 'Sentiment Analysis for @CocaCola\'s Most Popular Tweets:'
+print '--------------------------------------------------------------------------'
+
+# Sentiment analysis
 for status in tweets['statuses']:
     texts.append(status['text'])
-print texts
+    print 'Tweet:'
+    print '\t' + status['text']
+    vs = vaderSentiment(status['text'].encode('utf-8'))
+    print 'Sentiment analysis:'
+    print '\t' + str(vs['compound'])
+    print '--------------------------------------------------------------------------'
 
-print '======================='
+print '\nLexical Analysis for @CocaCola\'s Most Popular Tweets:'
+print '--------------------------------------------------------------------------'
 
-words = []
+# Lexical analysis
 for text in texts:
+    print 'Tweet:'
+    print '\t' + text
+    words = []
     for w in text.split():
         words.append(w)
-print words
+    print 'Lexical diversity:'
+    print '\t' + str(1.0*len(set(words))/len(words))
+    print '--------------------------------------------------------------------------'
 
-cnt = Counter(words)
-pt = PrettyTable(field_names=['Word', 'Count'])
-srtCnt = sorted(cnt.items(), key=lambda pair: pair[1], reverse=True)
-for kv in srtCnt:
-    pt.add_row(kv)
-print(pt)
 
-print '======================='
+# Search twitter for @Pepsi's most popular tweets
+q = 'from:Pepsi'
+count=10
+tweets = tw.search.tweets(q=q, count=count, lang='en', result_type='popular')
+texts=[]
 
-print 'Lexical Diversity'
-print 1.0*len(set(words))/len(words)
+print '\nSentiment Analysis for @Pepsi\'s Most Popular Tweets:'
+print '--------------------------------------------------------------------------'
 
+# Sentiment analysis
+for status in tweets['statuses']:
+    texts.append(status['text'])
+    print 'Tweet:'
+    print '\t' + status['text']
+    vs = vaderSentiment(status['text'].encode('utf-8'))
+    print 'Sentiment analysis:'
+    print '\t' + str(vs['compound'])
+    print '--------------------------------------------------------------------------'
+
+print '\nLexical Analysis for @CocaCola\'s Most Popular Tweets:'
+print '--------------------------------------------------------------------------'
+
+# Lexical analysis
+for text in texts:
+    print 'Tweet:'
+    print '\t' + text
+    words = []
+    for w in text.split():
+        words.append(w)
+    print 'Lexical diversity:'
+    print '\t' + str(1.0*len(set(words))/len(words))
+    print '--------------------------------------------------------------------------'
