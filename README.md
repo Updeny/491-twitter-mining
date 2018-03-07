@@ -6,3 +6,9 @@
       
 ### Running the application   
 python search.py
+
+#### Dependencies
+- Python 2.7
+- python-twitter
+- vaderSentiment
+
